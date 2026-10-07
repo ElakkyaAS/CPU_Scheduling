@@ -1,7 +1,7 @@
 """Non-preemptive Priority scheduling (lower number = higher priority)."""
 
 
-def priority_scheduling(processes):
+def priority(processes):
     """Return (results, gantt) for the given list of process dicts."""
     procs = [dict(p) for p in processes]      # work on a copy
     time = 0
