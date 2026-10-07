@@ -28,8 +28,10 @@ def plot_gantt(all_gantts):
     colors = {pid: plt.cm.tab10(i % 10) for i, pid in enumerate(pids)}
     colors["Idle"] = "lightgrey"
 
-    fig, axes = plt.subplots(len(all_gantts), 1, figsize=(10, 2.2 * len(all_gantts)),
-                             squeeze=False)
+    # constrained_layout re-spaces the charts to fit any window size
+    fig, axes = plt.subplots(len(all_gantts), 1,
+                             figsize=(10, 1.8 * len(all_gantts)),
+                             squeeze=False, constrained_layout=True)
     for ax, (name, gantt) in zip(axes[:, 0], all_gantts.items()):
         for pid, start, end in gantt:
             ax.barh(0, end - start, left=start, color=colors[pid], edgecolor="black")
@@ -37,9 +39,8 @@ def plot_gantt(all_gantts):
         ticks = sorted({t for _, s, e in gantt for t in (s, e)})
         ax.set_xticks(ticks)
         ax.set_yticks([])
-        ax.set_title(name, loc="left", fontsize=10, fontweight="bold")
+        ax.set_title(name, loc="center", fontsize=10, fontweight="bold")
     axes[-1, 0].set_xlabel("Time")
-    plt.tight_layout()
     plt.show()
 
 
