@@ -2,13 +2,14 @@
 CPU Scheduling Simulator
 
 This program takes process details as input and runs
-FCFS, SJF, Round Robin, and Priority scheduling algorithms.
+FCFS, SJF, Round Robin, Priority, and SRTF scheduling algorithms.
 """
 
 from fcfs import fcfs
 from sjf import sjf
 from rr import round_robin
 from priority import priority
+from srtf import srtf
 
 from output import (
     print_results,
@@ -165,6 +166,8 @@ def main():
 
     priority_results, priority_gantt = priority(processes)
 
+    srtf_results, srtf_gantt = srtf(processes)
+
     # --------------------------------------------------
     # Step 6: Store all results
     # --------------------------------------------------
@@ -173,7 +176,8 @@ def main():
         "FCFS": fcfs_results,
         "SJF": sjf_results,
         "Round Robin": rr_results,
-        "Priority": priority_results
+        "Priority": priority_results,
+        "SRTF": srtf_results
     }
 
     # --------------------------------------------------
@@ -184,7 +188,8 @@ def main():
         "FCFS": fcfs_gantt,
         "SJF": sjf_gantt,
         "Round Robin": rr_gantt,
-        "Priority": priority_gantt
+        "Priority": priority_gantt,
+        "SRTF": srtf_gantt
     }
 
     # --------------------------------------------------
@@ -203,6 +208,8 @@ def main():
     print_results("Round Robin", rr_results)
 
     print_results("Priority", priority_results)
+
+    print_results("SRTF", srtf_results)
 
     # --------------------------------------------------
     # Step 9: Display comparison
